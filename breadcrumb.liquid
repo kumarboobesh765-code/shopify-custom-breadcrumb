@@ -1,0 +1,53 @@
+{% assign crumb_collection = collection %}
+
+{% if crumb_collection == nil or crumb_collection.handle == blank %}
+  {% assign crumb_collection = product.collections.first %}
+{% endif %}
+
+{% if crumb_collection %}
+<nav class="custom-breadcrumb" aria-label="Breadcrumb">
+  <a href="/" class="crumb-home">Home</a>
+
+  <span class="crumb-separator">/</span>
+  <a href="{{ crumb_collection.url }}" class="crumb-collection">
+    {{ crumb_collection.title }}
+  </a>
+
+  <br>
+
+  <span class="crumb-separator">/</span>
+  <span class="crumb-current">{{ product.title }}</span>
+</nav>
+{% endif %}
+
+<style>
+.custom-breadcrumb {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 5px 0 10px 0;
+  font-family: inherit;
+  color: #ffffff !important;
+}
+
+.custom-breadcrumb a {
+  color: #ffffff !important;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.custom-breadcrumb a:hover {
+  text-decoration: none;
+}
+
+.custom-breadcrumb .crumb-separator {
+  margin: 0 6px;
+  opacity: 0.7;
+  color: #ffffff !important;
+}
+
+.custom-breadcrumb .crumb-current {
+  font-weight: 600;
+  font-style: italic;
+  color: #ffffff !important;
+}
+</style>
